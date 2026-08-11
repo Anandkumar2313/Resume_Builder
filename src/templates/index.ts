@@ -1,2 +1,16 @@
-// This file establishes the templates directory for Week 2 implementation.
-export const TEMPLATES_INITIALIZED = true;
+export { TEMPLATE_REGISTRY } from './registry'
+export { getTemplate, listTemplates } from './registry-utils'
+export type {
+  NormalizedResume,
+  NormalizedPersonalInfo,
+  NormalizedExperience,
+  NormalizedEducation,
+  NormalizedSkill,
+  NormalizedProject,
+  NormalizedCertification,
+  NormalizedLanguage,
+  NormalizedAward,
+  TemplateConfig,
+  TemplateMeta,
+  TemplateProps,
+} from './types'
