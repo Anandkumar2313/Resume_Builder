@@ -24,6 +24,12 @@ export const useExportStore = create<ExportStore>((set) => ({
 
     try {
       set({ status: 'rendering' })
+      // Double rAF: first ensures React has committed, second ensures the browser
+      // has fully painted the frame before html2canvas captures the element.
+      await new Promise<void>(resolve => {
+        requestAnimationFrame(() => { requestAnimationFrame(() => { resolve() }) })
+      })
+      set({ status: 'generating' })
       await exportToPdf(resumeTitle, resumeId)
       set({ status: 'done', error: null })
     } catch (err) {
