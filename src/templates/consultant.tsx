@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const GRAY_700 = '#374151'
@@ -14,41 +13,41 @@ export function ConsultantTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
-      <div className="mb-6 h-1 w-full rounded" style={{ backgroundColor: BLUE_600 }} />
-      <div className="mb-6">
-        <div className="flex items-center gap-4">
-          {pi.avatar && <AvatarImage src={pi.avatar} size={64} avatarStyle="circle" className="shrink-0" style={{ border: `2px solid ${BLUE_600}` }} />}
-          <div>
-            <h1 className="text-2xl font-bold" style={{ color: GRAY_700 }}>{pi.fullName || 'Your Name'}</h1>
-            {pi.title && <p className="mt-0.5 text-sm font-medium" style={{ color: BLUE_600 }}>{pi.title}</p>}
+    <div className="m-0 p-0 w-full flex-1 bg-white" style={{ fontFamily: 'Inter, sans-serif' }}>
+      <div className="px-8 py-8">
+        <div className="mb-6 h-1 w-full rounded" style={{ backgroundColor: BLUE_600 }} />
+        <div className="mb-6">
+          <div className="flex items-center gap-4">
+            <div>
+              <h1 className="text-2xl font-bold" style={{ color: GRAY_700 }}>{pi.fullName}</h1>
+              {pi.title && <p className="mt-0.5 text-sm font-medium" style={{ color: BLUE_600 }}>{pi.title}</p>}
+            </div>
+          </div>
+          <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-gray-500">
+            {pi.age && <span>{pi.age}</span>}
+            {pi.gender && <span>{pi.gender}</span>}
+            {pi.hometown && <span>{pi.hometown}</span>}
+            {pi.maritalStatus && <span>{pi.maritalStatus}</span>}
+            {pi.yearsOfExperience && <span>{pi.yearsOfExperience}</span>}
+            {pi.educationLevel && <span>{pi.educationLevel}</span>}
+            {pi.email && <span>{pi.email}</span>}
+            {pi.phone && <span>{pi.phone}</span>}
+            {pi.wechat && <span>{pi.wechat}</span>}
+            {pi.location && <span>{pi.location}</span>}
+            {pi.website && <span>{pi.website}</span>}
+            {pi.linkedin && <span className="break-all">{pi.linkedin}</span>}
+            {pi.github && <span className="break-all">{pi.github}</span>}
           </div>
         </div>
-        <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-gray-500">
-          {pi.age && <span>{pi.age}</span>}
-          {pi.gender && <span>{pi.gender}</span>}
-          {pi.hometown && <span>{pi.hometown}</span>}
-          {pi.maritalStatus && <span>{pi.maritalStatus}</span>}
-          {pi.yearsOfExperience && <span>{pi.yearsOfExperience}</span>}
-          {pi.educationLevel && <span>{pi.educationLevel}</span>}
-          {pi.email && <span>{pi.email}</span>}
-          {pi.phone && <span>{pi.phone}</span>}
-          {pi.wechat && <span>{pi.wechat}</span>}
-          {pi.location && <span>{pi.location}</span>}
-          {pi.website && <span>{pi.website}</span>}
-          {pi.linkedin && <span className="break-all">{pi.linkedin}</span>}
-          {pi.github && <span className="break-all">{pi.github}</span>}
-        </div>
-      </div>
 
-      {vis.has('summary') && pi.summary && (
+      {vis.has('summary') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Summary" />
           <p className="text-sm leading-relaxed text-gray-600" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} />
         </div>
       )}
 
-      {vis.has('experience') && resume.experience.length > 0 && (
+      {vis.has('experience') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Experience" />
           <div className="space-y-4">
@@ -79,7 +78,7 @@ export function ConsultantTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('education') && resume.education.length > 0 && (
+      {vis.has('education') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Education" />
           <div className="space-y-3">
@@ -110,7 +109,7 @@ export function ConsultantTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('skills') && resume.skills.length > 0 && (
+      {vis.has('skills') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Skills" />
           <div className="space-y-1.5">
@@ -124,7 +123,7 @@ export function ConsultantTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('projects') && resume.projects.length > 0 && (
+      {vis.has('projects') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Projects" />
           <div className="space-y-3">
@@ -152,7 +151,7 @@ export function ConsultantTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('certifications') && resume.certifications.length > 0 && (
+      {vis.has('certifications') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Certifications" />
           <div className="space-y-1.5">
@@ -166,7 +165,7 @@ export function ConsultantTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('languages') && resume.languages.length > 0 && (
+      {vis.has('languages') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Languages" />
           <div className="space-y-1.5">
@@ -180,7 +179,7 @@ export function ConsultantTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('awards') && resume.awards.length > 0 && (
+      {vis.has('awards') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Awards" />
           <div className="space-y-3">
@@ -199,6 +198,7 @@ export function ConsultantTemplate({ resume }: TemplateProps) {
           </div>
         </div>
       )}
+    </div>
     </div>
   )
 }

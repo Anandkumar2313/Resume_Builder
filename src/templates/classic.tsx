@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 export function ClassicTemplate({ resume }: TemplateProps) {
@@ -11,12 +10,12 @@ export function ClassicTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="m-0 p-0 w-full flex-1 bg-white" style={{ fontFamily: 'Inter, sans-serif' }}>
+      <div className="px-8 py-8">
       <div className="mb-6 border-b-2 border-zinc-800 pb-4">
         <div className="flex items-center justify-center gap-4">
-          {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={64} className="shrink-0" />}
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-zinc-900">{pi.fullName || 'Your Name'}</h1>
+            <h1 className="text-2xl font-bold text-zinc-900">{pi.fullName}</h1>
             {pi.title && <p className="mt-1 text-lg text-zinc-600">{pi.title}</p>}
           </div>
         </div>
@@ -35,14 +34,14 @@ export function ClassicTemplate({ resume }: TemplateProps) {
         </div>
       </div>
 
-      {vis.has('summary') && pi.summary && (
+      {vis.has('summary') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Summary" />
           <p className="text-sm text-zinc-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} />
         </div>
       )}
 
-      {vis.has('experience') && resume.experience.length > 0 && (
+      {vis.has('experience') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Experience" />
           <div className="space-y-3">
@@ -68,7 +67,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('education') && resume.education.length > 0 && (
+      {vis.has('education') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Education" />
           <div className="space-y-3">
@@ -94,7 +93,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('skills') && resume.skills.length > 0 && (
+      {vis.has('skills') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Skills" />
           <div className="space-y-1">
@@ -108,7 +107,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('projects') && resume.projects.length > 0 && (
+      {vis.has('projects') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Projects" />
           <div className="space-y-3">
@@ -131,7 +130,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('certifications') && resume.certifications.length > 0 && (
+      {vis.has('certifications') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Certifications" />
           <div className="space-y-1">
@@ -145,7 +144,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('languages') && resume.languages.length > 0 && (
+      {vis.has('languages') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Languages" />
           <div className="space-y-1">
@@ -159,7 +158,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('awards') && resume.awards.length > 0 && (
+      {vis.has('awards') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Awards" />
           <div className="space-y-2">
@@ -178,6 +177,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
           </div>
         </div>
       )}
+    </div>
     </div>
   )
 }

@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const PRIMARY = '#881337'
@@ -19,10 +18,9 @@ export function RoseTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="mx-auto w-full flex-1 bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
       <div className="mb-8 rounded-2xl px-8 py-6 text-center" style={{ backgroundColor: ROSE_50 }}>
-        {pi.avatar && <AvatarImage src={pi.avatar} size={80} avatarStyle="circle" className="mx-auto mb-3 border-3" style={{ borderColor: ACCENT }} />}
-        <h1 className="text-2xl font-semibold tracking-wide" style={{ color: PRIMARY }}>{pi.fullName || 'Your Name'}</h1>
+        <h1 className="text-2xl font-semibold tracking-wide" style={{ color: PRIMARY }}>{pi.fullName}</h1>
         {pi.title && <p className="mt-1 text-sm" style={{ color: ACCENT }}>{pi.title}</p>}
         <div className="mt-3 flex items-center justify-center gap-1">
           <span className="h-1 w-1 rounded-full" style={{ backgroundColor: ACCENT, opacity: 0.4 }} />
@@ -48,14 +46,14 @@ export function RoseTemplate({ resume }: TemplateProps) {
         </div>
       </div>
 
-      {vis.has('summary') && pi.summary && (
+      {vis.has('summary') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Summary" />
           <p className="rounded-xl px-4 py-3 text-sm italic leading-relaxed" style={{ backgroundColor: ROSE_50, color: '#57534e' }} dangerouslySetInnerHTML={{ __html: md(pi.summary) }} />
         </div>
       )}
 
-      {vis.has('experience') && resume.experience.length > 0 && (
+      {vis.has('experience') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Experience" />
           <div className="space-y-4">
@@ -83,7 +81,7 @@ export function RoseTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('education') && resume.education.length > 0 && (
+      {vis.has('education') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Education" />
           <div className="space-y-3">
@@ -111,7 +109,7 @@ export function RoseTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('skills') && resume.skills.length > 0 && (
+      {vis.has('skills') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Skills" />
           <div className="space-y-3">
@@ -129,7 +127,7 @@ export function RoseTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('projects') && resume.projects.length > 0 && (
+      {vis.has('projects') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Projects" />
           <div className="space-y-3">
@@ -161,7 +159,7 @@ export function RoseTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('certifications') && resume.certifications.length > 0 && (
+      {vis.has('certifications') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Certifications" />
           <div className="flex flex-wrap gap-2">
@@ -175,7 +173,7 @@ export function RoseTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('languages') && resume.languages.length > 0 && (
+      {vis.has('languages') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Languages" />
           <div className="flex flex-wrap gap-2">
@@ -190,7 +188,7 @@ export function RoseTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('awards') && resume.awards.length > 0 && (
+      {vis.has('awards') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Awards" />
           <div className="space-y-3">

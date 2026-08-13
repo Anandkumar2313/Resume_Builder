@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const BLUE = '#2563eb'
@@ -21,15 +20,14 @@ export function BerlinTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] overflow-hidden bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="m-0 p-0 w-full flex-1 overflow-hidden bg-white" style={{ fontFamily: 'Inter, sans-serif' }}>
       <div className="relative px-10 py-8 text-white" style={{ backgroundColor: '#000000' }}>
         <div className="absolute right-8 top-4 h-20 w-20 rounded-full border-4" style={{ borderColor: YELLOW, opacity: 0.6 }} />
         <div className="absolute right-24 bottom-3 h-8 w-8" style={{ backgroundColor: RED_B, opacity: 0.7 }} />
         <div className="absolute right-6 bottom-6 h-12 w-3" style={{ backgroundColor: BLUE, opacity: 0.7 }} />
         <div className="relative flex items-center gap-6">
-          {pi.avatar && <AvatarImage src={pi.avatar} size={80} avatarStyle="circle" wrapperClassName="shrink-0 border-4 p-0.5" wrapperStyle={{ borderColor: YELLOW }} />}
           <div>
-            <h1 className="text-3xl font-extrabold uppercase tracking-tight">{pi.fullName || 'Your Name'}</h1>
+            <h1 className="text-3xl font-extrabold uppercase tracking-tight">{pi.fullName}</h1>
             {pi.title && <p className="mt-1 text-sm font-light tracking-wider" style={{ color: YELLOW }}>{pi.title}</p>}
             {contacts.length > 0 && (
               <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-white/70">
@@ -41,7 +39,7 @@ export function BerlinTemplate({ resume }: TemplateProps) {
       </div>
 
       <div className="p-8 pt-6">
-        {vis.has('summary') && pi.summary && (
+        {vis.has('summary') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Summary" />
             <div className="border-l-4 pl-4" style={{ borderColor: BLUE }}>
@@ -50,7 +48,7 @@ export function BerlinTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Experience" />
             <div className="space-y-4">
@@ -78,7 +76,7 @@ export function BerlinTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Education" />
             <div className="space-y-3">
@@ -106,7 +104,7 @@ export function BerlinTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Skills" />
             <div className="space-y-3">
@@ -124,7 +122,7 @@ export function BerlinTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('projects') && resume.projects.length > 0 && (
+        {vis.has('projects') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Projects" />
             <div className="space-y-3">
@@ -156,7 +154,7 @@ export function BerlinTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Certifications" />
             <div className="space-y-1.5">
@@ -173,7 +171,7 @@ export function BerlinTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Languages" />
             <div className="flex flex-wrap gap-2">
@@ -188,7 +186,7 @@ export function BerlinTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Awards" />
             <div className="space-y-3">

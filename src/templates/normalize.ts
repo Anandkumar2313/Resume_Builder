@@ -46,7 +46,7 @@ function normalizePersonalInfo(pi: Resume['personalInfo']): NormalizedPersonalIn
   const github = trim(pi.github)
 
   return {
-    fullName: trim(pi.fullName) || 'Your Name',
+    fullName: trim(pi.fullName),
     title: trim(pi.title),
     email,
     phone,
@@ -55,7 +55,6 @@ function normalizePersonalInfo(pi: Resume['personalInfo']): NormalizedPersonalIn
     linkedin,
     github,
     summary: trim(pi.summary),
-    avatar: trim(pi.avatar),
     wechat: trim(pi.wechat),
     age: trim(pi.age),
     gender: trim(pi.gender),
@@ -180,10 +179,7 @@ export function normalizeResume(resume: Resume): NormalizedResume {
     visibleSections: [],
   }
 
-  normalized.visibleSections = resume.sections.filter(key => {
-    const check = (SECTION_VISIBILITY_MAP as Record<string, ((r: NormalizedResume) => boolean) | undefined>)[key]
-    return check?.(normalized) === true
-  })
+  normalized.visibleSections = resume.sections.filter(key => key !== 'personalInfo')
 
   return normalized
 }

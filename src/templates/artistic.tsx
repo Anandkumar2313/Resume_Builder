@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const PRIMARY = '#1e1b4b'
@@ -19,15 +18,14 @@ export function ArtisticTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] overflow-hidden bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="m-0 p-0 w-full flex-1 overflow-hidden bg-white" style={{ fontFamily: 'Inter, sans-serif' }}>
       <div className="relative px-10 py-8 text-white" style={{ background: PRIMARY }}>
         <div className="absolute right-6 top-4 h-24 w-24 rounded-full opacity-20" style={{ backgroundColor: ACCENT }} />
         <div className="absolute right-16 bottom-2 h-12 w-12 rounded-full opacity-30" style={{ backgroundColor: HIGHLIGHT }} />
         <div className="absolute left-0 bottom-0 h-2 w-full" style={{ background: `linear-gradient(90deg, ${ACCENT}, ${HIGHLIGHT})` }} />
         <div className="relative flex items-center gap-5">
-          {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={80} wrapperClassName="shrink-0 p-1" wrapperStyle={{ border: `3px dashed ${HIGHLIGHT}` }} />}
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight">{pi.fullName || 'Your Name'}</h1>
+            <h1 className="text-3xl font-extrabold tracking-tight">{pi.fullName}</h1>
             {pi.title && <p className="mt-1 text-sm font-medium" style={{ color: HIGHLIGHT }}>{pi.title}</p>}
             {contacts.length > 0 && (
               <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-white/70">
@@ -39,7 +37,7 @@ export function ArtisticTemplate({ resume }: TemplateProps) {
       </div>
 
       <div className="p-8 pt-6">
-        {vis.has('summary') && pi.summary && (
+        {vis.has('summary') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Summary" />
             <div className="rounded-lg p-4" style={{ border: `2px dashed ${ACCENT}30`, backgroundColor: `${PRIMARY}05` }}>
@@ -48,7 +46,7 @@ export function ArtisticTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Experience" />
             <div className="space-y-4">
@@ -77,7 +75,7 @@ export function ArtisticTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Education" />
             <div className="space-y-3">
@@ -105,7 +103,7 @@ export function ArtisticTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Skills" />
             <div className="space-y-3">
@@ -126,7 +124,7 @@ export function ArtisticTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('projects') && resume.projects.length > 0 && (
+        {vis.has('projects') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Projects" />
             <div className="space-y-3">
@@ -160,7 +158,7 @@ export function ArtisticTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Certifications" />
             <div className="flex flex-wrap gap-2">
@@ -174,7 +172,7 @@ export function ArtisticTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Languages" />
             <div className="flex flex-wrap gap-3">
@@ -189,7 +187,7 @@ export function ArtisticTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6" data-section>
             <SectionHeader title="Awards" />
             <div className="space-y-3">

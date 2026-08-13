@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const GOLD = '#d4af37'
@@ -18,20 +17,19 @@ export function LuxeTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] shadow-lg" style={{ fontFamily: "'Georgia', 'Times New Roman', serif", backgroundColor: BG }}>
+    <div className="mx-auto w-full flex-1 shadow-lg" style={{ fontFamily: "'Georgia', 'Times New Roman', serif", backgroundColor: BG }}>
       <div className="px-12 pt-10 pb-6 text-center" style={{ borderBottom: `1px solid ${GOLD}` }}>
-        {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={80} className="mx-auto mb-4" wrapperStyle={{ border: `2px solid ${GOLD}` }} />}
-        <h1 className="text-3xl font-bold tracking-[0.12em]" style={{ color: TEXT }}>{pi.fullName || 'Your Name'}</h1>
+        <h1 className="text-3xl font-bold tracking-[0.12em]" style={{ color: TEXT }}>{pi.fullName}</h1>
         {pi.title && <p className="mt-1 text-xs uppercase tracking-[0.4em]" style={{ color: GOLD }}>{pi.title}</p>}
         <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs" style={{ color: '#78716c' }}>
           {[pi.age, pi.gender, pi.hometown, pi.maritalStatus, pi.yearsOfExperience, pi.educationLevel, pi.email, pi.phone, pi.wechat, pi.location, pi.website, pi.linkedin].filter(Boolean).map((c, i) => <span key={i}>{c}</span>)}
         </div>
       </div>
       <div className="px-12 py-8">
-        {vis.has('summary') && pi.summary && (
+        {vis.has('summary') && (
           <div className="mb-6" data-section><SH title="Profile" /><p className="text-sm leading-relaxed text-zinc-600 italic text-center" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} /></div>
         )}
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6" data-section>
             <SH title="Experience" />
             <div className="space-y-4">
@@ -49,7 +47,7 @@ export function LuxeTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6" data-section>
             <SH title="Education" />
             <div className="space-y-3">
@@ -66,7 +64,7 @@ export function LuxeTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6" data-section>
             <SH title="Expertise" />
             <div className="space-y-1.5">
@@ -79,7 +77,7 @@ export function LuxeTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6" data-section>
             <SH title="Certifications" />
             <div className="space-y-1.5">
@@ -92,7 +90,7 @@ export function LuxeTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6" data-section>
             <SH title="Languages" />
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
@@ -100,7 +98,7 @@ export function LuxeTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6" data-section>
             <SH title="Honours" />
             <div className="space-y-2">

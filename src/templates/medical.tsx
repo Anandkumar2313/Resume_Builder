@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const PRIMARY = '#0369a1'
@@ -18,12 +17,11 @@ export function MedicalTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="mx-auto w-full flex-1 bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
       <div className="px-8 py-6" style={{ background: `linear-gradient(135deg, ${PRIMARY}, ${ACCENT})` }}>
         <div className="flex items-center gap-5 text-white">
-          {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={72} className="shrink-0" wrapperStyle={{ border: '3px solid white' }} />}
           <div>
-            <h1 className="text-2xl font-bold">{pi.fullName || 'Your Name'}</h1>
+            <h1 className="text-2xl font-bold">{pi.fullName}</h1>
             {pi.title && <p className="mt-0.5 text-sm font-medium text-white/80">{pi.title}</p>}
             <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-white/70">
               {[pi.age, pi.gender, pi.hometown, pi.maritalStatus, pi.yearsOfExperience, pi.educationLevel, pi.email, pi.phone, pi.wechat, pi.location, pi.website].filter(Boolean).map((c, i) => <span key={i}>{c}</span>)}
@@ -32,10 +30,10 @@ export function MedicalTemplate({ resume }: TemplateProps) {
         </div>
       </div>
       <div className="p-8">
-        {vis.has('summary') && pi.summary && (
+        {vis.has('summary') && (
           <div className="mb-6" data-section><SH title="Clinical Profile" /><p className="text-sm leading-relaxed text-zinc-600" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} /></div>
         )}
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6" data-section>
             <SH title="Experience" />
             <div className="space-y-4">
@@ -53,7 +51,7 @@ export function MedicalTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6" data-section>
             <SH title="Education & Training" />
             <div className="space-y-3">
@@ -69,7 +67,7 @@ export function MedicalTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6" data-section>
             <SH title="Clinical Skills" />
             <div className="space-y-2">
@@ -84,7 +82,7 @@ export function MedicalTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6" data-section>
             <SH title="Certifications & Licenses" />
             <div className="space-y-1.5">
@@ -97,7 +95,7 @@ export function MedicalTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6" data-section>
             <SH title="Languages" />
             <div className="flex flex-wrap gap-x-6 gap-y-1">
@@ -105,7 +103,7 @@ export function MedicalTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6" data-section>
             <SH title="Awards & Recognition" />
             <div className="space-y-2">

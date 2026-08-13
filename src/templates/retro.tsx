@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const PRIMARY = '#78350f'
@@ -19,20 +18,19 @@ export function RetroTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] shadow-lg" style={{ fontFamily: "'Georgia', 'Times New Roman', serif", backgroundColor: BG }}>
+    <div className="mx-auto w-full flex-1 shadow-lg" style={{ fontFamily: "'Georgia', 'Times New Roman', serif", backgroundColor: BG }}>
       <div className="border-b-8 px-8 py-8 text-center" style={{ borderColor: PRIMARY }}>
-        {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={80} className="mx-auto mb-4" wrapperStyle={{ border: `4px solid ${PRIMARY}` }} />}
-        <h1 className="text-3xl font-black tracking-wider" style={{ color: PRIMARY }}>{pi.fullName || 'Your Name'}</h1>
+        <h1 className="text-3xl font-black tracking-wider" style={{ color: PRIMARY }}>{pi.fullName}</h1>
         {pi.title && <p className="mt-1 text-sm font-bold uppercase tracking-[0.3em]" style={{ color: ACCENT }}>{pi.title}</p>}
         <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs" style={{ color: MUTED }}>
           {[pi.age, pi.gender, pi.hometown, pi.maritalStatus, pi.yearsOfExperience, pi.educationLevel, pi.email, pi.phone, pi.wechat, pi.location, pi.website].filter(Boolean).map((c, i) => <span key={i}>{c}</span>)}
         </div>
       </div>
       <div className="px-8 pb-8 pt-6">
-        {vis.has('summary') && pi.summary && (
+        {vis.has('summary') && (
           <div className="mb-6" data-section><SH title="About Me" /><p className="text-sm leading-relaxed text-zinc-700 italic" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} /></div>
         )}
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6" data-section>
             <SH title="Experience" />
             <div className="space-y-4">
@@ -49,7 +47,7 @@ export function RetroTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6" data-section>
             <SH title="Education" />
             <div className="space-y-3">
@@ -66,7 +64,7 @@ export function RetroTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6" data-section>
             <SH title="Skills" />
             <div className="space-y-1.5">
@@ -79,7 +77,7 @@ export function RetroTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6" data-section>
             <SH title="Certifications" />
             <div className="space-y-1.5">
@@ -92,7 +90,7 @@ export function RetroTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6" data-section>
             <SH title="Languages" />
             <div className="flex flex-wrap gap-x-6 gap-y-1">
@@ -100,7 +98,7 @@ export function RetroTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6" data-section>
             <SH title="Awards" />
             <div className="space-y-2">

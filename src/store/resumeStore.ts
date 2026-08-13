@@ -15,6 +15,7 @@ import type {
   Award,
 } from '@/types/resume'
 
+
 type ResumeState = {
   resumes: Resume[]
   activeResumeId: string | null
@@ -81,7 +82,6 @@ const defaultPersonalInfo: PersonalInfo = {
   website: '',
   linkedin: '',
   github: '',
-  avatar: '',
   summary: '',
   wechat: '',
   age: '',

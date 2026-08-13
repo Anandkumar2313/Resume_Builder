@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const GOLD = '#d4af37'
@@ -17,20 +16,19 @@ export function ElegantTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}>
-      <div className="mb-6 border-b pb-8 pt-8 text-center" style={{ borderColor: GOLD }}>
-        {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={80} className="mx-auto mb-4" wrapperStyle={{ border: `2px solid ${GOLD}` }} />}
-        <h1 className="text-3xl font-bold tracking-widest" style={{ color: PRIMARY }}>{pi.fullName || 'Your Name'}</h1>
+    <div className="m-0 p-0 w-full flex-1 bg-white" style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}>
+      <div className="mb-6 border-b px-8 pb-8 pt-8 text-center" style={{ borderColor: GOLD }}>
+        <h1 className="text-3xl font-bold tracking-widest" style={{ color: PRIMARY }}>{pi.fullName}</h1>
         {pi.title && <p className="mt-2 text-sm uppercase tracking-[0.3em]" style={{ color: GOLD }}>{pi.title}</p>}
         <div className="mx-auto mt-4 max-w-lg flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-zinc-500">
           {[pi.age, pi.gender, pi.hometown, pi.maritalStatus, pi.yearsOfExperience, pi.educationLevel, pi.email, pi.phone, pi.wechat, pi.location, pi.website].filter(Boolean).map((c, i) => <span key={i}>{c}</span>)}
         </div>
       </div>
-      <div className="px-8 pb-8">
-        {vis.has('summary') && pi.summary && (
+      <div className="px-8 py-6">
+        {vis.has('summary') && (
           <div className="mb-6" data-section><SH title="Profile" /><p className="text-sm leading-relaxed text-zinc-600 italic" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} /></div>
         )}
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6" data-section>
             <SH title="Experience" />
             <div className="space-y-4">
@@ -48,7 +46,7 @@ export function ElegantTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6" data-section>
             <SH title="Education" />
             <div className="space-y-3">
@@ -65,7 +63,7 @@ export function ElegantTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6" data-section>
             <SH title="Expertise" />
             <div className="space-y-1.5">
@@ -78,7 +76,7 @@ export function ElegantTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('projects') && resume.projects.length > 0 && (
+        {vis.has('projects') && (
           <div className="mb-6" data-section>
             <SH title="Projects" />
             <div className="space-y-3">
@@ -95,7 +93,7 @@ export function ElegantTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6" data-section>
             <SH title="Certifications" />
             <div className="space-y-1.5">
@@ -108,7 +106,7 @@ export function ElegantTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6" data-section>
             <SH title="Languages" />
             <div className="flex flex-wrap gap-x-6 gap-y-1">
@@ -116,7 +114,7 @@ export function ElegantTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6" data-section>
             <SH title="Honours & Awards" />
             <div className="space-y-2">

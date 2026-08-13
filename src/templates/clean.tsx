@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const BLUE = '#0066cc'
@@ -10,12 +9,12 @@ export function CleanTemplate({ resume }: TemplateProps) {
   const vis = new Set(resume.visibleSections)
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="m-0 p-0 w-full flex-1 bg-white" style={{ fontFamily: 'Inter, sans-serif' }}>
+      <div className="px-8 py-8">
       <div className="mb-6">
         <div className="flex items-center gap-4">
-          {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={64} className="shrink-0" style={{ border: `2px solid ${BLUE}` }} />}
           <div>
-            <h1 className="text-2xl font-bold" style={{ color: BLUE }}>{pi.fullName || 'Your Name'}</h1>
+            <h1 className="text-2xl font-bold" style={{ color: BLUE }}>{pi.fullName}</h1>
             {pi.title && <p className="mt-0.5 text-base" style={{ color: TEAL }}>{pi.title}</p>}
           </div>
         </div>
@@ -37,14 +36,14 @@ export function CleanTemplate({ resume }: TemplateProps) {
         <div className="mt-3 h-0.5 w-full rounded" style={{ background: `linear-gradient(90deg, ${BLUE}, ${TEAL})` }} />
       </div>
 
-      {vis.has('summary') && pi.summary && (
+      {vis.has('summary') && (
         <div className="mb-5" data-section>
           <h2 className="mb-2 text-sm font-bold uppercase tracking-wider" style={{ color: BLUE }}>Summary</h2>
           <p className="text-sm leading-relaxed text-zinc-600" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} />
         </div>
       )}
 
-      {vis.has('experience') && resume.experience.length > 0 && (
+      {vis.has('experience') && (
         <div className="mb-5" data-section>
           <h2 className="mb-2 text-sm font-bold uppercase tracking-wider" style={{ color: BLUE }}>Experience</h2>
           <div className="space-y-4">
@@ -70,7 +69,7 @@ export function CleanTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('education') && resume.education.length > 0 && (
+      {vis.has('education') && (
         <div className="mb-5" data-section>
           <h2 className="mb-2 text-sm font-bold uppercase tracking-wider" style={{ color: BLUE }}>Education</h2>
           <div className="space-y-3">
@@ -96,7 +95,7 @@ export function CleanTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('skills') && resume.skills.length > 0 && (
+      {vis.has('skills') && (
         <div className="mb-5" data-section>
           <h2 className="mb-2 text-sm font-bold uppercase tracking-wider" style={{ color: BLUE }}>Skills</h2>
           <div className="flex flex-wrap gap-2">
@@ -109,7 +108,7 @@ export function CleanTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('projects') && resume.projects.length > 0 && (
+      {vis.has('projects') && (
         <div className="mb-5" data-section>
           <h2 className="mb-2 text-sm font-bold uppercase tracking-wider" style={{ color: BLUE }}>Projects</h2>
           <div className="space-y-4">
@@ -136,7 +135,7 @@ export function CleanTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('certifications') && resume.certifications.length > 0 && (
+      {vis.has('certifications') && (
         <div className="mb-5" data-section>
           <h2 className="mb-2 text-sm font-bold uppercase tracking-wider" style={{ color: BLUE }}>Certifications</h2>
           <div className="space-y-1.5">
@@ -153,7 +152,7 @@ export function CleanTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('languages') && resume.languages.length > 0 && (
+      {vis.has('languages') && (
         <div className="mb-5" data-section>
           <h2 className="mb-2 text-sm font-bold uppercase tracking-wider" style={{ color: BLUE }}>Languages</h2>
           <div className="flex flex-wrap gap-x-6 gap-y-1">
@@ -167,7 +166,7 @@ export function CleanTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('awards') && resume.awards.length > 0 && (
+      {vis.has('awards') && (
         <div className="mb-5" data-section>
           <h2 className="mb-2 text-sm font-bold uppercase tracking-wider" style={{ color: BLUE }}>Awards</h2>
           <div className="space-y-2">
@@ -186,6 +185,7 @@ export function CleanTemplate({ resume }: TemplateProps) {
           </div>
         </div>
       )}
+    </div>
     </div>
   )
 }

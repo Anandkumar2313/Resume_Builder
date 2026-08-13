@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 export function TwoColumnTemplate({ resume }: TemplateProps) {
@@ -14,11 +13,21 @@ export function TwoColumnTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto flex max-w-[210mm] overflow-hidden bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif', minHeight: '297mm' }}>
-      <div className="w-[35%] shrink-0 p-6 text-white" style={{ background: 'linear-gradient(180deg, #1a1a2e 0%, #16213e 100%)' }}>
+    <div
+      style={{
+        fontFamily: 'Inter, sans-serif',
+        display: 'grid',
+        gridTemplateColumns: '1fr 2fr',
+        gridTemplateRows: '1fr',
+        alignItems: 'stretch',
+        width: '100%',
+        minHeight: '1123px',
+        background: 'white',
+      }}
+    >
+      <div style={{ background: 'linear-gradient(180deg, #1a1a2e 0%, #16213e 100%)', padding: '24px', color: 'white' }}>
         <div className="mb-6 text-center">
-          {pi.avatar && <AvatarImage src={pi.avatar} size={80} avatarStyle="circle" wrapperClassName="mx-auto mb-3 w-fit overflow-hidden" />}
-          <h1 className="text-xl font-bold tracking-tight text-white">{pi.fullName || 'Your Name'}</h1>
+          <h1 className="text-xl font-bold tracking-tight text-white">{pi.fullName}</h1>
           {pi.title && <p className="mt-1 text-sm font-light text-zinc-300">{pi.title}</p>}
         </div>
         <div className="mb-6 space-y-1.5 text-xs">
@@ -37,7 +46,7 @@ export function TwoColumnTemplate({ resume }: TemplateProps) {
           {pi.github && <div className="flex items-start gap-2 text-zinc-300"><span className="shrink-0 text-zinc-400">GitHub:</span><span className="break-all">{pi.github}</span></div>}
         </div>
 
-        {vis.includes('skills') && resume.skills.length > 0 && (
+        {vis.includes('skills') && (
           <div className="mb-5" data-section>
             <LeftHeader title="Skills" />
             <div className="space-y-2">
@@ -52,7 +61,7 @@ export function TwoColumnTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.includes('languages') && resume.languages.length > 0 && (
+        {vis.includes('languages') && (
           <div className="mb-5" data-section>
             <LeftHeader title="Languages" />
             <div className="space-y-1.5">
@@ -65,7 +74,7 @@ export function TwoColumnTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.includes('certifications') && resume.certifications.length > 0 && (
+        {vis.includes('certifications') && (
           <div className="mb-5" data-section>
             <LeftHeader title="Certifications" />
             <div className="space-y-1.5">
@@ -78,7 +87,7 @@ export function TwoColumnTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.includes('awards') && resume.awards.length > 0 && (
+        {vis.includes('awards') && (
           <div className="mb-5" data-section>
             <LeftHeader title="Awards" />
             <div className="space-y-1.5">
@@ -94,14 +103,14 @@ export function TwoColumnTemplate({ resume }: TemplateProps) {
         )}
       </div>
 
-      <div className="flex-1 p-6">
-        {vis.includes('summary') && pi.summary && (
+      <div style={{ padding: '24px', background: 'white' }}>
+        {vis.includes('summary') && (
           <div className="mb-5" data-section>
             <RightHeader title="Summary" />
             <p className="text-sm leading-relaxed text-zinc-600" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} />
           </div>
         )}
-        {vis.includes('experience') && resume.experience.length > 0 && (
+        {vis.includes('experience') && (
           <div className="mb-5" data-section>
             <RightHeader title="Experience" />
             <div className="space-y-3">
@@ -125,7 +134,7 @@ export function TwoColumnTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.includes('education') && resume.education.length > 0 && (
+        {vis.includes('education') && (
           <div className="mb-5" data-section>
             <RightHeader title="Education" />
             <div className="space-y-3">
@@ -147,7 +156,7 @@ export function TwoColumnTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.includes('projects') && resume.projects.length > 0 && (
+        {vis.includes('projects') && (
           <div className="mb-5" data-section>
             <RightHeader title="Projects" />
             <div className="space-y-3">

@@ -7,7 +7,6 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=flat-square&logo=typescript)
 ![Firebase](https://img.shields.io/badge/Firebase-12.x-FFCA28?style=flat-square&logo=firebase)
 ![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?style=flat-square&logo=vite)
-![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
 
 ---
 
@@ -650,34 +649,6 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
-## License
-
-```
-MIT License
-
-Copyright (c) 2024 Krish Saini
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
----
-
 ## Author
 
 **Krish Saini**
@@ -732,13 +703,6 @@ The PDF is generated entirely in the browser using `html2pdf.js`. The live previ
 <summary><strong>Are my resumes private?</strong></summary>
 
 Yes. Firestore security rules ensure each user can only read and write their own resume documents. No other user can access your data.
-
-</details>
-
-<details>
-<summary><strong>Can I use this project for my portfolio?</strong></summary>
-
-Yes, this project is MIT licensed. You are free to use, modify, and distribute it.
 
 </details>
 

@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const DARK_GREEN = '#004d40'
@@ -14,20 +13,19 @@ export function FormalTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="m-0 p-0 w-full flex-1 bg-white" style={{ fontFamily: 'Inter, sans-serif' }}>
       <div className="px-8 py-6 text-center" style={{ backgroundColor: DARK_GREEN }}>
-        {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={72} className="mx-auto mb-3" wrapperStyle={{ border: '3px solid white' }} />}
-        <h1 className="text-2xl font-bold text-white">{pi.fullName || 'Your Name'}</h1>
+        <h1 className="text-2xl font-bold text-white">{pi.fullName}</h1>
         {pi.title && <p className="mt-1 text-sm font-medium" style={{ color: '#a7f3d0' }}>{pi.title}</p>}
         <div className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-white/70">
           {[pi.age, pi.gender, pi.hometown, pi.maritalStatus, pi.yearsOfExperience, pi.educationLevel, pi.email, pi.phone, pi.wechat, pi.location, pi.website].filter(Boolean).map((c, i) => <span key={i}>{c}</span>)}
         </div>
       </div>
       <div className="p-8">
-        {vis.has('summary') && pi.summary && (
+        {vis.has('summary') && (
           <div className="mb-6" data-section><SH title="Profile" /><p className="text-sm leading-relaxed text-zinc-600" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} /></div>
         )}
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6" data-section>
             <SH title="Work Experience" />
             <div className="space-y-4">
@@ -44,7 +42,7 @@ export function FormalTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6" data-section>
             <SH title="Education" />
             <div className="space-y-3">
@@ -60,7 +58,7 @@ export function FormalTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6" data-section>
             <SH title="Skills" />
             <div className="space-y-1.5">
@@ -73,7 +71,7 @@ export function FormalTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('projects') && resume.projects.length > 0 && (
+        {vis.has('projects') && (
           <div className="mb-6" data-section>
             <SH title="Projects" />
             <div className="space-y-3">
@@ -90,7 +88,7 @@ export function FormalTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6" data-section>
             <SH title="Certifications" />
             <div className="space-y-1.5">
@@ -103,7 +101,7 @@ export function FormalTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6" data-section>
             <SH title="Languages" />
             <div className="flex flex-wrap gap-x-6 gap-y-1">
@@ -111,7 +109,7 @@ export function FormalTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6" data-section>
             <SH title="Awards" />
             <div className="space-y-2">

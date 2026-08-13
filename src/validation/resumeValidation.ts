@@ -48,19 +48,19 @@ function result(errors: FieldError[]): SectionValidationResult {
 export function validatePersonalInfo(info: PersonalInfo): SectionValidationResult {
   const errors: FieldError[] = []
 
-  if (!info.fullName.trim()) {
+  if (!(info.fullName || '').trim()) {
     errors.push(err('fullName', 'Full name is required'))
-  } else if (info.fullName.trim().length < 2) {
+  } else if ((info.fullName || '').trim().length < 2) {
     errors.push(err('fullName', 'Full name must be at least 2 characters'))
   }
 
-  if (!info.email.trim()) {
+  if (!(info.email || '').trim()) {
     errors.push(err('email', 'Email is required'))
-  } else if (!EMAIL_RE.test(info.email.trim())) {
+  } else if (!EMAIL_RE.test((info.email || '').trim())) {
     errors.push(err('email', 'Enter a valid email address'))
   }
 
-  if (info.phone && !PHONE_RE.test(info.phone.trim())) {
+  if (info.phone && !PHONE_RE.test((info.phone || '').trim())) {
     errors.push(err('phone', 'Enter a valid phone number'))
   }
 
@@ -82,8 +82,8 @@ export function validatePersonalInfo(info: PersonalInfo): SectionValidationResul
 export function validateExperienceEntry(exp: Experience): SectionValidationResult {
   const errors: FieldError[] = []
 
-  if (!exp.company.trim()) errors.push(err('company', 'Company is required'))
-  if (!exp.position.trim()) errors.push(err('position', 'Position is required'))
+  if (!(exp.company || '').trim()) errors.push(err('company', 'Company is required'))
+  if (!(exp.position || '').trim()) errors.push(err('position', 'Position is required'))
 
   if (!exp.startDate) {
     errors.push(err('startDate', 'Start date is required'))
@@ -105,9 +105,9 @@ export function validateExperienceEntry(exp: Experience): SectionValidationResul
 export function validateEducationEntry(edu: Education): SectionValidationResult {
   const errors: FieldError[] = []
 
-  if (!edu.institution.trim()) errors.push(err('institution', 'Institution is required'))
-  if (!edu.degree.trim()) errors.push(err('degree', 'Degree is required'))
-  if (!edu.field.trim()) errors.push(err('field', 'Field of study is required'))
+  if (!(edu.institution || '').trim()) errors.push(err('institution', 'Institution is required'))
+  if (!(edu.degree || '').trim()) errors.push(err('degree', 'Degree is required'))
+  if (!(edu.field || '').trim()) errors.push(err('field', 'Field of study is required'))
 
   if (!edu.startDate) {
     errors.push(err('startDate', 'Start date is required'))
@@ -123,7 +123,7 @@ export function validateEducationEntry(edu: Education): SectionValidationResult 
     }
   }
 
-  if (edu.gpa.trim()) {
+  if (edu.gpa && (edu.gpa || '').trim()) {
     const gpa = parseFloat(edu.gpa)
     if (Number.isNaN(gpa) || gpa < 0 || gpa > 10) {
       errors.push(err('gpa', 'GPA must be a number between 0 and 10'))
@@ -136,11 +136,11 @@ export function validateEducationEntry(edu: Education): SectionValidationResult 
 export function validateSkillEntry(skill: Skill): SectionValidationResult {
   const errors: FieldError[] = []
 
-  if (!skill.category.trim()) errors.push(err('category', 'Category name is required'))
+  if (!(skill.category || '').trim()) errors.push(err('category', 'Category name is required'))
 
   if (skill.items.length === 0) {
     errors.push(err('items', 'At least one skill item is required'))
-  } else if (skill.items.some(item => !item.trim())) {
+  } else if (skill.items.some(item => !(item || '').trim())) {
     errors.push(err('items', 'Skill items must not be empty'))
   }
 
@@ -150,8 +150,8 @@ export function validateSkillEntry(skill: Skill): SectionValidationResult {
 export function validateProjectEntry(project: Project): SectionValidationResult {
   const errors: FieldError[] = []
 
-  if (!project.name.trim()) errors.push(err('name', 'Project name is required'))
-  if (!project.description.trim()) errors.push(err('description', 'Description is required'))
+  if (!(project.name || '').trim()) errors.push(err('name', 'Project name is required'))
+  if (!(project.description || '').trim()) errors.push(err('description', 'Description is required'))
 
   if (project.url && !isValidUrl(project.url)) {
     errors.push(err('url', 'Enter a valid project URL'))
@@ -173,8 +173,8 @@ export function validateProjectEntry(project: Project): SectionValidationResult 
 export function validateCertificationEntry(cert: Certification): SectionValidationResult {
   const errors: FieldError[] = []
 
-  if (!cert.name.trim()) errors.push(err('name', 'Certification name is required'))
-  if (!cert.issuer.trim()) errors.push(err('issuer', 'Issuer is required'))
+  if (!(cert.name || '').trim()) errors.push(err('name', 'Certification name is required'))
+  if (!(cert.issuer || '').trim()) errors.push(err('issuer', 'Issuer is required'))
 
   if (cert.url && !isValidUrl(cert.url)) {
     errors.push(err('url', 'Enter a valid credential URL'))
@@ -186,7 +186,7 @@ export function validateCertificationEntry(cert: Certification): SectionValidati
 export function validateLanguageEntry(lang: Language): SectionValidationResult {
   const errors: FieldError[] = []
 
-  if (!lang.language.trim()) errors.push(err('language', 'Language name is required'))
+  if (!(lang.language || '').trim()) errors.push(err('language', 'Language name is required'))
 
   const validProficiencies = ['native', 'fluent', 'advanced', 'intermediate', 'beginner']
   if (!validProficiencies.includes(lang.proficiency)) {
@@ -280,8 +280,8 @@ export function validateResume(resume: Resume): ResumeValidationResult {
 export function isResumeReadyForExport(resume: Resume): boolean {
   const { personalInfo, experience, education } = resume
   return (
-    Boolean(personalInfo.fullName.trim()) &&
-    EMAIL_RE.test(personalInfo.email.trim()) &&
+    Boolean((personalInfo.fullName || '').trim()) &&
+    EMAIL_RE.test((personalInfo.email || '').trim()) &&
     (experience.length > 0 || education.length > 0)
   )
 }

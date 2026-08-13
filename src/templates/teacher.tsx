@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const PRIMARY = '#9a3412'
@@ -20,12 +19,11 @@ export function TeacherTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] shadow-lg" style={{ fontFamily: 'Inter, sans-serif', backgroundColor: WARM_BG }}>
+    <div className="mx-auto w-full flex-1 shadow-lg" style={{ fontFamily: 'Inter, sans-serif', backgroundColor: WARM_BG }}>
       <div className="px-8 py-7" style={{ background: `linear-gradient(135deg, ${PRIMARY}, ${ACCENT})` }}>
         <div className="flex items-center gap-5 text-white">
-          {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={72} className="shrink-0" wrapperStyle={{ border: '3px solid white' }} />}
           <div>
-            <h1 className="text-2xl font-bold">{pi.fullName || 'Your Name'}</h1>
+            <h1 className="text-2xl font-bold">{pi.fullName}</h1>
             {pi.title && <p className="mt-0.5 text-sm font-medium text-white/80">{pi.title}</p>}
             <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-white/70">
               {[pi.age, pi.gender, pi.hometown, pi.maritalStatus, pi.yearsOfExperience, pi.educationLevel, pi.email, pi.phone, pi.wechat, pi.location, pi.website].filter(Boolean).map((c, i) => <span key={i}>{c}</span>)}
@@ -34,13 +32,13 @@ export function TeacherTemplate({ resume }: TemplateProps) {
         </div>
       </div>
       <div className="p-8">
-        {vis.has('summary') && pi.summary && (
+        {vis.has('summary') && (
           <div className="mb-6 rounded-lg bg-white p-4 shadow-sm" data-section>
             <SH title="Teaching Philosophy" />
             <p className="text-sm leading-relaxed" style={{ color: BODY }} dangerouslySetInnerHTML={{ __html: md(pi.summary) }} />
           </div>
         )}
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6 rounded-lg bg-white p-4 shadow-sm" data-section>
             <SH title="Teaching Experience" />
             <div className="space-y-4">
@@ -57,7 +55,7 @@ export function TeacherTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6 rounded-lg bg-white p-4 shadow-sm" data-section>
             <SH title="Education" />
             <div className="space-y-3">
@@ -73,7 +71,7 @@ export function TeacherTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6 rounded-lg bg-white p-4 shadow-sm" data-section>
             <SH title="Skills & Subjects" />
             <div className="space-y-2">
@@ -88,7 +86,7 @@ export function TeacherTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6 rounded-lg bg-white p-4 shadow-sm" data-section>
             <SH title="Certifications & Licenses" />
             <div className="space-y-1.5">
@@ -101,7 +99,7 @@ export function TeacherTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6 rounded-lg bg-white p-4 shadow-sm" data-section>
             <SH title="Languages" />
             <div className="flex flex-wrap gap-x-6 gap-y-1">
@@ -109,7 +107,7 @@ export function TeacherTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6 rounded-lg bg-white p-4 shadow-sm" data-section>
             <SH title="Awards & Recognition" />
             <div className="space-y-2">

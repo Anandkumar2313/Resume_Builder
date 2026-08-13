@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const BLUE = '#1e40af'
@@ -13,11 +12,10 @@ export function EuroTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="m-0 p-0 w-full flex-1 bg-white" style={{ fontFamily: 'Inter, sans-serif' }}>
       <div className="flex items-center gap-5 px-8 py-6" style={{ backgroundColor: BLUE }}>
-        {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={80} className="shrink-0" wrapperStyle={{ border: '3px solid white' }} />}
         <div className="text-white">
-          <h1 className="text-2xl font-bold">{pi.fullName || 'Your Name'}</h1>
+          <h1 className="text-2xl font-bold">{pi.fullName}</h1>
           {pi.title && <p className="mt-0.5 text-sm font-medium text-blue-200">{pi.title}</p>}
           <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-blue-100">
             {[pi.age, pi.gender, pi.hometown, pi.maritalStatus, pi.yearsOfExperience, pi.educationLevel, pi.email, pi.phone, pi.wechat, pi.location, pi.website].filter(Boolean).map((c, i) => <span key={i}>{c}</span>)}
@@ -25,10 +23,10 @@ export function EuroTemplate({ resume }: TemplateProps) {
         </div>
       </div>
       <div className="p-8">
-        {vis.has('summary') && pi.summary && (
+        {vis.has('summary') && (
           <div className="mb-6" data-section><SH title="Profile" /><p className="mt-2 text-sm leading-relaxed text-zinc-600" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} /></div>
         )}
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6" data-section>
             <SH title="Work Experience" />
             <div className="mt-2 space-y-4">
@@ -46,7 +44,7 @@ export function EuroTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6" data-section>
             <SH title="Education" />
             <div className="mt-2 space-y-3">
@@ -63,7 +61,7 @@ export function EuroTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6" data-section>
             <SH title="Skills" />
             <div className="mt-2 space-y-1.5">
@@ -76,7 +74,7 @@ export function EuroTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('projects') && resume.projects.length > 0 && (
+        {vis.has('projects') && (
           <div className="mb-6" data-section>
             <SH title="Projects" />
             <div className="mt-2 space-y-3">
@@ -93,7 +91,7 @@ export function EuroTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6" data-section>
             <SH title="Certifications" />
             <div className="mt-2 space-y-1.5">
@@ -106,7 +104,7 @@ export function EuroTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6" data-section>
             <SH title="Languages" />
             <div className="mt-2 flex flex-wrap gap-x-6 gap-y-1">
@@ -114,7 +112,7 @@ export function EuroTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6" data-section>
             <SH title="Awards" />
             <div className="mt-2 space-y-2">

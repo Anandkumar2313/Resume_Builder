@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 export function AcademicTemplate({ resume }: TemplateProps) {
@@ -8,33 +7,31 @@ export function AcademicTemplate({ resume }: TemplateProps) {
   const contacts = [pi.age, pi.gender, pi.hometown, pi.maritalStatus, pi.yearsOfExperience, pi.educationLevel, pi.email, pi.phone, pi.wechat, pi.location, pi.website].filter(Boolean)
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: '"Computer Modern", "CMU Serif", Georgia, "Times New Roman", serif' }}>
-      <div className="mb-6">
-        <div className={pi.avatar ? 'flex items-center gap-4' : 'text-center'}>
-          {pi.avatar && (
-            <AvatarImage src={pi.avatar} size={64} avatarStyle="circle" wrapperClassName="shrink-0 overflow-hidden" />
-          )}
-          <div>
-            <h1 className="text-2xl font-bold text-zinc-900" style={{ letterSpacing: '0.02em' }}>{pi.fullName || 'Your Name'}</h1>
-            {pi.title && <p className="mt-0.5 text-base text-zinc-700 italic">{pi.title}</p>}
-            {contacts.length > 0 && (
-              <p className="mt-1.5 text-xs text-zinc-600">
-                {contacts.map((c, i) => <span key={i}>{c}{i < contacts.length - 1 ? ' · ' : ''}</span>)}
-              </p>
-            )}
+    <div className="m-0 p-0 w-full flex-1 bg-white" style={{ fontFamily: '"Computer Modern", "CMU Serif", Georgia, "Times New Roman", serif' }}>
+      <div className="px-8 py-8">
+        <div className="mb-6">
+          <div className="text-center">
+            <div>
+              <h1 className="text-2xl font-bold text-zinc-900" style={{ letterSpacing: '0.02em' }}>{pi.fullName}</h1>
+              {pi.title && <p className="mt-0.5 text-base text-zinc-700 italic">{pi.title}</p>}
+              {contacts.length > 0 && (
+                <p className="mt-1.5 text-xs text-zinc-600">
+                  {contacts.map((c, i) => <span key={i}>{c}{i < contacts.length - 1 ? ' · ' : ''}</span>)}
+                </p>
+              )}
+            </div>
           </div>
+          <div className="mt-3 border-b-2 border-zinc-800" />
         </div>
-        <div className="mt-3 border-b-2 border-zinc-800" />
-      </div>
 
-      {vis.has('summary') && pi.summary && (
+      {vis.has('summary') && (
         <div className="mb-4" data-section>
           <h2 className="mb-1.5 text-xs font-bold uppercase tracking-[0.25em] text-zinc-800" style={{ borderBottom: '1px solid #d4d4d8', paddingBottom: '2px' }}>Summary</h2>
           <p className="text-sm leading-relaxed text-zinc-600 indent-8" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} />
         </div>
       )}
 
-      {vis.has('experience') && resume.experience.length > 0 && (
+      {vis.has('experience') && (
         <div className="mb-4" data-section>
           <h2 className="mb-1.5 text-xs font-bold uppercase tracking-[0.25em] text-zinc-800" style={{ borderBottom: '1px solid #d4d4d8', paddingBottom: '2px' }}>Experience</h2>
           <div className="space-y-2.5">
@@ -60,7 +57,7 @@ export function AcademicTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('education') && resume.education.length > 0 && (
+      {vis.has('education') && (
         <div className="mb-4" data-section>
           <h2 className="mb-1.5 text-xs font-bold uppercase tracking-[0.25em] text-zinc-800" style={{ borderBottom: '1px solid #d4d4d8', paddingBottom: '2px' }}>Education</h2>
           <div className="space-y-2.5">
@@ -85,7 +82,7 @@ export function AcademicTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('skills') && resume.skills.length > 0 && (
+      {vis.has('skills') && (
         <div className="mb-4" data-section>
           <h2 className="mb-1.5 text-xs font-bold uppercase tracking-[0.25em] text-zinc-800" style={{ borderBottom: '1px solid #d4d4d8', paddingBottom: '2px' }}>Skills</h2>
           <div className="space-y-0.5">
@@ -99,7 +96,7 @@ export function AcademicTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('projects') && resume.projects.length > 0 && (
+      {vis.has('projects') && (
         <div className="mb-4" data-section>
           <h2 className="mb-1.5 text-xs font-bold uppercase tracking-[0.25em] text-zinc-800" style={{ borderBottom: '1px solid #d4d4d8', paddingBottom: '2px' }}>Projects</h2>
           <div className="space-y-2.5">
@@ -125,7 +122,7 @@ export function AcademicTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('certifications') && resume.certifications.length > 0 && (
+      {vis.has('certifications') && (
         <div className="mb-4" data-section>
           <h2 className="mb-1.5 text-xs font-bold uppercase tracking-[0.25em] text-zinc-800" style={{ borderBottom: '1px solid #d4d4d8', paddingBottom: '2px' }}>Certifications</h2>
           <div className="space-y-1">
@@ -140,7 +137,7 @@ export function AcademicTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('languages') && resume.languages.length > 0 && (
+      {vis.has('languages') && (
         <div className="mb-4" data-section>
           <h2 className="mb-1.5 text-xs font-bold uppercase tracking-[0.25em] text-zinc-800" style={{ borderBottom: '1px solid #d4d4d8', paddingBottom: '2px' }}>Languages</h2>
           <p className="text-sm text-zinc-600">
@@ -155,7 +152,7 @@ export function AcademicTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('awards') && resume.awards.length > 0 && (
+      {vis.has('awards') && (
         <div className="mb-4" data-section>
           <h2 className="mb-1.5 text-xs font-bold uppercase tracking-[0.25em] text-zinc-800" style={{ borderBottom: '1px solid #d4d4d8', paddingBottom: '2px' }}>Awards</h2>
           <div className="space-y-2">
@@ -174,6 +171,7 @@ export function AcademicTemplate({ resume }: TemplateProps) {
           </div>
         </div>
       )}
+    </div>
     </div>
   )
 }

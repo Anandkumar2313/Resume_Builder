@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 export function BoldTemplate({ resume }: TemplateProps) {
@@ -7,12 +6,11 @@ export function BoldTemplate({ resume }: TemplateProps) {
   const vis = new Set(resume.visibleSections)
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="m-0 p-0 w-full flex-1 bg-white" style={{ fontFamily: 'Inter, sans-serif' }}>
       <div className="bg-black px-8 py-8 text-white">
         <div className="flex items-center gap-5">
-          {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={80} className="shrink-0" style={{ border: '3px solid white' }} />}
           <div>
-            <h1 className="text-4xl font-black tracking-tight">{pi.fullName || 'Your Name'}</h1>
+            <h1 className="text-4xl font-black tracking-tight">{pi.fullName}</h1>
             {pi.title && <p className="mt-1 text-lg font-light text-zinc-400">{pi.title}</p>}
           </div>
         </div>
@@ -32,14 +30,14 @@ export function BoldTemplate({ resume }: TemplateProps) {
       </div>
 
       <div className="p-8">
-        {vis.has('summary') && pi.summary && (
+        {vis.has('summary') && (
           <div className="mb-6" data-section>
             <h2 className="mb-3 border-b-4 border-black pb-1 text-lg font-black uppercase tracking-wider text-black">Summary</h2>
             <p className="text-sm leading-relaxed text-zinc-600" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} />
           </div>
         )}
 
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6" data-section>
             <h2 className="mb-3 border-b-4 border-black pb-1 text-lg font-black uppercase tracking-wider text-black">Experience</h2>
             <div className="space-y-4">
@@ -65,7 +63,7 @@ export function BoldTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6" data-section>
             <h2 className="mb-3 border-b-4 border-black pb-1 text-lg font-black uppercase tracking-wider text-black">Education</h2>
             <div className="space-y-3">
@@ -91,7 +89,7 @@ export function BoldTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6" data-section>
             <h2 className="mb-3 border-b-4 border-black pb-1 text-lg font-black uppercase tracking-wider text-black">Skills</h2>
             <div className="flex flex-wrap gap-2">
@@ -104,7 +102,7 @@ export function BoldTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('projects') && resume.projects.length > 0 && (
+        {vis.has('projects') && (
           <div className="mb-6" data-section>
             <h2 className="mb-3 border-b-4 border-black pb-1 text-lg font-black uppercase tracking-wider text-black">Projects</h2>
             <div className="space-y-4">
@@ -131,7 +129,7 @@ export function BoldTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6" data-section>
             <h2 className="mb-3 border-b-4 border-black pb-1 text-lg font-black uppercase tracking-wider text-black">Certifications</h2>
             <div className="space-y-2">
@@ -148,7 +146,7 @@ export function BoldTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6" data-section>
             <h2 className="mb-3 border-b-4 border-black pb-1 text-lg font-black uppercase tracking-wider text-black">Languages</h2>
             <div className="flex flex-wrap gap-2">
@@ -159,7 +157,7 @@ export function BoldTemplate({ resume }: TemplateProps) {
           </div>
         )}
 
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6" data-section>
             <h2 className="mb-3 border-b-4 border-black pb-1 text-lg font-black uppercase tracking-wider text-black">Awards</h2>
             <div className="space-y-3">

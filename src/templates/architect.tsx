@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const PRIMARY = '#1e3a5f'
@@ -22,20 +21,20 @@ export function ArchitectTemplate({ resume }: TemplateProps) {
 
   return (
     <div
-      className="mx-auto max-w-[210mm] bg-white shadow-lg"
+      className="m-0 p-0 w-full flex-1 bg-white"
       style={{
         fontFamily: 'Inter, sans-serif',
         backgroundImage: `linear-gradient(${GRID} 1px, transparent 1px), linear-gradient(90deg, ${GRID} 1px, transparent 1px)`,
         backgroundSize: '40px 40px',
       }}
     >
-      <div className="mb-6 border-b-2 pb-5" style={{ borderColor: PRIMARY }}>
+      <div className="px-8 py-8">
+        <div className="mb-6 border-b-2 pb-5" style={{ borderColor: PRIMARY }}>
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-4">
-            {pi.avatar && <AvatarImage src={pi.avatar} size={64} avatarStyle="circle" className="shrink-0" style={{ border: `2px solid ${PRIMARY}` }} />}
             <div>
               <h1 className="text-2xl font-bold uppercase tracking-wider" style={{ fontFamily: 'JetBrains Mono, Consolas, monospace', color: PRIMARY }}>
-                {pi.fullName || 'Your Name'}
+                {pi.fullName}
               </h1>
               {pi.title && <p className="mt-1 text-sm font-medium uppercase tracking-widest" style={{ color: ACCENT }}>{pi.title}</p>}
             </div>
@@ -60,14 +59,14 @@ export function ArchitectTemplate({ resume }: TemplateProps) {
         </div>
       </div>
 
-      {vis.has('summary') && pi.summary && (
+      {vis.has('summary') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Summary" />
           <p className="border-l-2 pl-4 text-sm leading-relaxed" style={{ color: BODY_TEXT, borderColor: GRID }} dangerouslySetInnerHTML={{ __html: md(pi.summary) }} />
         </div>
       )}
 
-      {vis.has('experience') && resume.experience.length > 0 && (
+      {vis.has('experience') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Experience" />
           <div className="space-y-4">
@@ -100,7 +99,7 @@ export function ArchitectTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('education') && resume.education.length > 0 && (
+      {vis.has('education') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Education" />
           <div className="space-y-3">
@@ -131,7 +130,7 @@ export function ArchitectTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('skills') && resume.skills.length > 0 && (
+      {vis.has('skills') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Skills" />
           <div className="space-y-2">
@@ -147,7 +146,7 @@ export function ArchitectTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('projects') && resume.projects.length > 0 && (
+      {vis.has('projects') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Projects" />
           <div className="space-y-3">
@@ -181,7 +180,7 @@ export function ArchitectTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('certifications') && resume.certifications.length > 0 && (
+      {vis.has('certifications') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Certifications" />
           <div className="space-y-1.5">
@@ -200,7 +199,7 @@ export function ArchitectTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('languages') && resume.languages.length > 0 && (
+      {vis.has('languages') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Languages" />
           <div className="space-y-1.5">
@@ -215,7 +214,7 @@ export function ArchitectTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('awards') && resume.awards.length > 0 && (
+      {vis.has('awards') && (
         <div className="mb-6" data-section>
           <SectionHeader title="Awards" />
           <div className="space-y-3">
@@ -234,6 +233,7 @@ export function ArchitectTemplate({ resume }: TemplateProps) {
           </div>
         </div>
       )}
+    </div>
     </div>
   )
 }

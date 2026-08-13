@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const DARK = '#0d1117'
@@ -12,7 +11,7 @@ const TEXT_DIM = '#8b949e'
 export function CoderTemplate({ resume }: TemplateProps) {
   const pi = resume.personalInfo
   const vis = new Set(resume.visibleSections)
-  const contacts = [pi.age, pi.gender, pi.hometown, pi.maritalStatus, pi.yearsOfExperience, pi.educationLevel, pi.email, pi.phone, pi.wechat, pi.location, pi.website, pi.github && `github.com/${pi.github}`, pi.linkedin].filter(Boolean)
+  const contacts = [pi.age, pi.gender, pi.hometown, pi.maritalStatus, pi.yearsOfExperience, pi.educationLevel, pi.email, pi.phone, pi.wechat, pi.location, pi.website, pi.github, pi.linkedin].filter(Boolean)
 
   const SH = ({ title }: { title: string }) => (
     <div className="mb-3 flex items-center gap-2">
@@ -23,12 +22,11 @@ export function CoderTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] overflow-hidden shadow-lg" style={{ fontFamily: "'JetBrains Mono', 'Fira Code', monospace", backgroundColor: DARK }}>
+    <div className="m-0 p-0 w-full flex-1 overflow-hidden" style={{ fontFamily: "'JetBrains Mono', 'Fira Code', monospace", backgroundColor: DARK }}>
       <div className="px-8 py-6" style={{ borderBottom: `1px solid ${BORDER}` }}>
         <div className="flex items-center gap-4">
-          {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={64} className="shrink-0" wrapperStyle={{ border: `2px solid ${GREEN}` }} />}
           <div>
-            <h1 className="text-2xl font-bold" style={{ color: TEXT }}>{pi.fullName || 'Your Name'}</h1>
+            <h1 className="text-2xl font-bold" style={{ color: TEXT }}>{pi.fullName}</h1>
             {pi.title && <p className="mt-0.5 text-sm" style={{ color: GREEN }}>// {pi.title}</p>}
           </div>
         </div>
@@ -40,13 +38,13 @@ export function CoderTemplate({ resume }: TemplateProps) {
       </div>
 
       <div className="p-8 pt-6">
-        {vis.has('summary') && pi.summary && (
+        {vis.has('summary') && (
           <div className="mb-6" data-section>
             <SH title="Summary" />
             <p className="text-sm leading-relaxed" style={{ color: TEXT }} dangerouslySetInnerHTML={{ __html: md(pi.summary) }} />
           </div>
         )}
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6" data-section>
             <SH title="Experience" />
             <div className="space-y-4">
@@ -73,7 +71,7 @@ export function CoderTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6" data-section>
             <SH title="Education" />
             <div className="space-y-3">
@@ -90,7 +88,7 @@ export function CoderTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6" data-section>
             <SH title="Skills" />
             <div className="space-y-2">
@@ -103,7 +101,7 @@ export function CoderTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('projects') && resume.projects.length > 0 && (
+        {vis.has('projects') && (
           <div className="mb-6" data-section>
             <SH title="Projects" />
             <div className="space-y-3">
@@ -130,7 +128,7 @@ export function CoderTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6" data-section>
             <SH title="Certifications" />
             <div className="space-y-1.5">
@@ -146,7 +144,7 @@ export function CoderTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6" data-section>
             <SH title="Languages" />
             <div className="flex flex-wrap gap-x-6 gap-y-1">
@@ -159,7 +157,7 @@ export function CoderTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6" data-section>
             <SH title="Awards" />
             <div className="space-y-3">

@@ -11,7 +11,6 @@ export type NormalizedPersonalInfo = {
   linkedin: string
   github: string
   summary: string
-  avatar: string
   wechat: string
   age: string
   gender: string

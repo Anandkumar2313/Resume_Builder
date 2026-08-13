@@ -7,7 +7,6 @@ export type PersonalInfo = {
   website: string
   linkedin: string
   github: string
-  avatar: string
   summary: string
   wechat: string
   age: string

@@ -6,7 +6,6 @@ import { getTemplate, TEMPLATE_REGISTRY } from '@/templates'
 import { useResumeStore, selectResumeById } from '@/store/resumeStore'
 import type { TemplateId } from '@/constants'
 import PreviewSectionRenderer from './PreviewSectionRenderer'
-import PreviewEmptyState from './PreviewEmptyState'
 import './preview.css'
 
 type Props = {
@@ -167,15 +166,11 @@ export default function ResumePreview({ resumeId }: Props) {
                   '--scale': scale,
                 } as React.CSSProperties}
               >
-                {preview.isEmpty ? (
-                  <PreviewEmptyState />
-                ) : (
-                  <PreviewSectionRenderer
+                <PreviewSectionRenderer
                     key={displayedTemplateId}
                     TemplateComponent={TemplateComponent}
                     normalizedResume={normalizedResume}
                   />
-                )}
               </div>
             </div>
           </ViewportFrame>

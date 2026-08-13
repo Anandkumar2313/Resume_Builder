@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const PRIMARY = '#18181b'
@@ -24,27 +23,27 @@ export function CardTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
-      <div className="mb-6 text-center">
-        {pi.avatar && <AvatarImage src={pi.avatar} size={80} avatarStyle="circle" className="mx-auto mb-3" style={{ border: `3px solid ${ACCENT}` }} />}
-        <h1 className="text-2xl font-bold" style={{ color: PRIMARY }}>{pi.fullName || 'Your Name'}</h1>
-        {pi.title && <p className="mt-1 text-sm font-medium" style={{ color: ACCENT }}>{pi.title}</p>}
-        {(contacts.length > 0 || pi.linkedin || pi.github) && (
-          <div className="mt-2 flex flex-wrap items-center justify-center gap-3 text-xs text-zinc-500">
-            {contacts.map((c, i) => <span key={i}>{c}</span>)}
-            {pi.linkedin && <span>LinkedIn: {pi.linkedin}</span>}
-            {pi.github && <span>GitHub: {pi.github}</span>}
-          </div>
-        )}
-      </div>
+    <div className="m-0 p-0 w-full flex-1 bg-white" style={{ fontFamily: 'Inter, sans-serif' }}>
+      <div className="px-8 py-8">
+        <div className="mb-6 text-center">
+          <h1 className="text-2xl font-bold" style={{ color: PRIMARY }}>{pi.fullName}</h1>
+          {pi.title && <p className="mt-1 text-sm font-medium" style={{ color: ACCENT }}>{pi.title}</p>}
+          {(contacts.length > 0 || pi.linkedin || pi.github) && (
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-3 text-xs text-zinc-500">
+              {contacts.map((c, i) => <span key={i}>{c}</span>)}
+              {pi.linkedin && <span>LinkedIn: {pi.linkedin}</span>}
+              {pi.github && <span>GitHub: {pi.github}</span>}
+            </div>
+          )}
+        </div>
 
-      {vis.has('summary') && pi.summary && (
+      {vis.has('summary') && (
         <Section title="Summary">
           <p className="text-sm leading-relaxed text-zinc-600" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} />
         </Section>
       )}
 
-      {vis.has('experience') && resume.experience.length > 0 && (
+      {vis.has('experience') && (
         <Section title="Experience">
           <div className="space-y-3">
             {resume.experience.map(exp => (
@@ -69,7 +68,7 @@ export function CardTemplate({ resume }: TemplateProps) {
         </Section>
       )}
 
-      {vis.has('education') && resume.education.length > 0 && (
+      {vis.has('education') && (
         <Section title="Education">
           <div className="space-y-3">
             {resume.education.map(edu => (
@@ -91,7 +90,7 @@ export function CardTemplate({ resume }: TemplateProps) {
         </Section>
       )}
 
-      {vis.has('skills') && resume.skills.length > 0 && (
+      {vis.has('skills') && (
         <Section title="Skills">
           <div className="space-y-2">
             {resume.skills.map(skill => (
@@ -108,7 +107,7 @@ export function CardTemplate({ resume }: TemplateProps) {
         </Section>
       )}
 
-      {vis.has('projects') && resume.projects.length > 0 && (
+      {vis.has('projects') && (
         <Section title="Projects">
           <div className="space-y-3">
             {resume.projects.map(proj => (
@@ -134,7 +133,7 @@ export function CardTemplate({ resume }: TemplateProps) {
         </Section>
       )}
 
-      {vis.has('certifications') && resume.certifications.length > 0 && (
+      {vis.has('certifications') && (
         <Section title="Certifications">
           <div className="space-y-2">
             {resume.certifications.map(cert => (
@@ -150,7 +149,7 @@ export function CardTemplate({ resume }: TemplateProps) {
         </Section>
       )}
 
-      {vis.has('languages') && resume.languages.length > 0 && (
+      {vis.has('languages') && (
         <Section title="Languages">
           <div className="flex flex-wrap gap-3">
             {resume.languages.map(lang => (
@@ -164,7 +163,7 @@ export function CardTemplate({ resume }: TemplateProps) {
         </Section>
       )}
 
-      {vis.has('awards') && resume.awards.length > 0 && (
+      {vis.has('awards') && (
         <Section title="Awards">
           <div className="space-y-2">
             {resume.awards.map(award => (
@@ -180,6 +179,7 @@ export function CardTemplate({ resume }: TemplateProps) {
           </div>
         </Section>
       )}
+    </div>
     </div>
   )
 }

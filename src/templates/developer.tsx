@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const BG = '#282c34'
@@ -22,14 +21,13 @@ export function DeveloperTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] overflow-hidden shadow-lg" style={{ fontFamily: "'JetBrains Mono', 'Courier New', monospace", backgroundColor: BG }}>
+    <div className="m-0 p-0 w-full flex-1 overflow-hidden" style={{ fontFamily: "'JetBrains Mono', 'Courier New', monospace", backgroundColor: BG }}>
       <div className="px-8 py-6">
         <div className="flex items-center gap-4">
-          {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={64} className="shrink-0" wrapperStyle={{ border: `2px solid ${GREEN}` }} />}
           <div>
             <div className="mb-1 flex gap-2">
               <span className="text-sm" style={{ color: TEXT_DIM }}>{'// '}</span>
-              <span className="text-sm font-bold" style={{ color: ORANGE }}>{pi.fullName || 'Your Name'}</span>
+              <span className="text-sm font-bold" style={{ color: ORANGE }}>{pi.fullName}</span>
             </div>
             {pi.title && <p className="text-sm" style={{ color: GREEN }}>{pi.title}</p>}
             <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs" style={{ color: TEXT_DIM }}>
@@ -40,14 +38,14 @@ export function DeveloperTemplate({ resume }: TemplateProps) {
       </div>
 
       <div className="px-8 pb-8">
-        {vis.has('summary') && pi.summary && (
+        {vis.has('summary') && (
           <div className="mb-6" data-section>
             <SH title="Summary" />
             <p className="text-sm leading-relaxed" style={{ color: TEXT }} dangerouslySetInnerHTML={{ __html: md(pi.summary) }} />
             <p className="mt-1 text-sm" style={{ color: TEXT_DIM }}>{'}'}</p>
           </div>
         )}
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6" data-section>
             <SH title="Experience" />
             <div className="space-y-4">
@@ -66,7 +64,7 @@ export function DeveloperTemplate({ resume }: TemplateProps) {
             <p className="mt-2 text-sm" style={{ color: TEXT_DIM }}>{'}'}</p>
           </div>
         )}
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6" data-section>
             <SH title="Education" />
             <div className="space-y-3">
@@ -84,7 +82,7 @@ export function DeveloperTemplate({ resume }: TemplateProps) {
             <p className="mt-2 text-sm" style={{ color: TEXT_DIM }}>{'}'}</p>
           </div>
         )}
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6" data-section>
             <SH title="Skills" />
             <div className="space-y-2">
@@ -98,7 +96,7 @@ export function DeveloperTemplate({ resume }: TemplateProps) {
             <p className="mt-2 text-sm" style={{ color: TEXT_DIM }}>{'}'}</p>
           </div>
         )}
-        {vis.has('projects') && resume.projects.length > 0 && (
+        {vis.has('projects') && (
           <div className="mb-6" data-section>
             <SH title="Projects" />
             <div className="space-y-3">
@@ -116,7 +114,7 @@ export function DeveloperTemplate({ resume }: TemplateProps) {
             <p className="mt-2 text-sm" style={{ color: TEXT_DIM }}>{'}'}</p>
           </div>
         )}
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6" data-section>
             <SH title="Certifications" />
             <div className="space-y-1.5">
@@ -130,7 +128,7 @@ export function DeveloperTemplate({ resume }: TemplateProps) {
             <p className="mt-2 text-sm" style={{ color: TEXT_DIM }}>{'}'}</p>
           </div>
         )}
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6" data-section>
             <SH title="Languages" />
             <div className="flex flex-wrap gap-x-6 gap-y-1">
@@ -139,7 +137,7 @@ export function DeveloperTemplate({ resume }: TemplateProps) {
             <p className="mt-2 text-sm" style={{ color: TEXT_DIM }}>{'}'}</p>
           </div>
         )}
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6" data-section>
             <SH title="Awards" />
             <div className="space-y-2">

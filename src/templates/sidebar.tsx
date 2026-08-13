@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const SIDEBAR_BG = '#1e40af'
@@ -18,11 +17,10 @@ export function SidebarTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto flex max-w-[210mm] overflow-hidden bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif', minHeight: '297mm' }}>
+    <div className="mx-auto flex w-full flex-1 overflow-hidden bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif', minHeight: '297mm' }}>
       <div className="w-[35%] shrink-0 p-6 text-white" style={{ backgroundColor: SIDEBAR_BG }}>
         <div className="mb-6 text-center">
-          {pi.avatar && <AvatarImage src={pi.avatar} size={80} avatarStyle="circle" wrapperClassName="mx-auto mb-3 w-fit overflow-hidden" />}
-          <h1 className="text-xl font-bold tracking-tight text-white">{pi.fullName || 'Your Name'}</h1>
+          <h1 className="text-xl font-bold tracking-tight text-white">{pi.fullName}</h1>
           {pi.title && <p className="mt-1 text-sm font-light text-blue-200">{pi.title}</p>}
         </div>
         <div className="mb-6 space-y-1.5 text-xs">
@@ -41,7 +39,7 @@ export function SidebarTemplate({ resume }: TemplateProps) {
           {pi.github && <div className="flex items-start gap-2 text-blue-100"><span className="shrink-0 text-blue-300">GitHub:</span><span className="break-all">{pi.github}</span></div>}
         </div>
 
-        {vis.includes('skills') && resume.skills.length > 0 && (
+        {vis.includes('skills') && (
           <div className="mb-5" data-section>
             <SidebarHeader title="Skills" />
             <div className="space-y-2">
@@ -58,7 +56,7 @@ export function SidebarTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.includes('languages') && resume.languages.length > 0 && (
+        {vis.includes('languages') && (
           <div className="mb-5" data-section>
             <SidebarHeader title="Languages" />
             <div className="space-y-1.5">
@@ -71,7 +69,7 @@ export function SidebarTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.includes('certifications') && resume.certifications.length > 0 && (
+        {vis.includes('certifications') && (
           <div className="mb-5" data-section>
             <SidebarHeader title="Certifications" />
             <div className="space-y-1.5">
@@ -84,7 +82,7 @@ export function SidebarTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.includes('awards') && resume.awards.length > 0 && (
+        {vis.includes('awards') && (
           <div className="mb-5" data-section>
             <SidebarHeader title="Awards" />
             <div className="space-y-1.5">
@@ -101,13 +99,13 @@ export function SidebarTemplate({ resume }: TemplateProps) {
       </div>
 
       <div className="flex-1 p-6">
-        {vis.includes('summary') && pi.summary && (
+        {vis.includes('summary') && (
           <div className="mb-5" data-section>
             <MainHeader title="Summary" />
             <p className="text-sm leading-relaxed text-zinc-600" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} />
           </div>
         )}
-        {vis.includes('experience') && resume.experience.length > 0 && (
+        {vis.includes('experience') && (
           <div className="mb-5" data-section>
             <MainHeader title="Experience" />
             <div className="space-y-3">
@@ -131,7 +129,7 @@ export function SidebarTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.includes('education') && resume.education.length > 0 && (
+        {vis.includes('education') && (
           <div className="mb-5" data-section>
             <MainHeader title="Education" />
             <div className="space-y-3">
@@ -153,7 +151,7 @@ export function SidebarTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.includes('projects') && resume.projects.length > 0 && (
+        {vis.includes('projects') && (
           <div className="mb-5" data-section>
             <MainHeader title="Projects" />
             <div className="space-y-3">

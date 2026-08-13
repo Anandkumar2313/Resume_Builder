@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const PRIMARY = '#37352f'
@@ -19,24 +18,24 @@ export function BlocksTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
-      <div className="mb-6">
-        <div className="flex items-center gap-4">
-          {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={56} className="shrink-0" />}
-          <div className="min-w-0 flex-1">
-            <h1 className="text-2xl font-bold" style={{ color: PRIMARY }}>{pi.fullName || 'Your Name'}</h1>
-            {pi.title && <p className="mt-0.5 text-sm" style={{ color: '#787774' }}>{pi.title}</p>}
+    <div className="m-0 p-0 w-full flex-1 bg-white" style={{ fontFamily: 'Inter, sans-serif' }}>
+      <div className="px-8 py-8">
+        <div className="mb-6">
+          <div className="flex items-center gap-4">
+            <div className="min-w-0 flex-1">
+              <h1 className="text-2xl font-bold" style={{ color: PRIMARY }}>{pi.fullName}</h1>
+              {pi.title && <p className="mt-0.5 text-sm" style={{ color: '#787774' }}>{pi.title}</p>}
+            </div>
           </div>
+          {contacts.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-2 text-xs" style={{ color: '#787774' }}>
+              {contacts.map((c, i) => <span key={i} className="rounded-sm px-2 py-0.5" style={{ backgroundColor: SUBTLE_BG }}>{c}</span>)}
+            </div>
+          )}
+          <div className="mt-4 h-px w-full" style={{ backgroundColor: '#e3e2de' }} />
         </div>
-        {contacts.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-2 text-xs" style={{ color: '#787774' }}>
-            {contacts.map((c, i) => <span key={i} className="rounded-sm px-2 py-0.5" style={{ backgroundColor: SUBTLE_BG }}>{c}</span>)}
-          </div>
-        )}
-        <div className="mt-4 h-px w-full" style={{ backgroundColor: '#e3e2de' }} />
-      </div>
 
-      {vis.has('summary') && pi.summary && (
+      {vis.has('summary') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Summary" />
           <div className="ml-5 rounded-md p-3" style={{ backgroundColor: SUBTLE_BG }}>
@@ -45,7 +44,7 @@ export function BlocksTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('experience') && resume.experience.length > 0 && (
+      {vis.has('experience') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Experience" />
           <div className="ml-5 space-y-3">
@@ -68,7 +67,7 @@ export function BlocksTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('education') && resume.education.length > 0 && (
+      {vis.has('education') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Education" />
           <div className="ml-5 space-y-3">
@@ -91,7 +90,7 @@ export function BlocksTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('skills') && resume.skills.length > 0 && (
+      {vis.has('skills') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Skills" />
           <div className="ml-5 overflow-hidden rounded-md border" style={{ borderColor: '#e3e2de' }}>
@@ -115,7 +114,7 @@ export function BlocksTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('projects') && resume.projects.length > 0 && (
+      {vis.has('projects') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Projects" />
           <div className="ml-5 space-y-3">
@@ -142,7 +141,7 @@ export function BlocksTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('certifications') && resume.certifications.length > 0 && (
+      {vis.has('certifications') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Certifications" />
           <div className="ml-5 overflow-hidden rounded-md border" style={{ borderColor: '#e3e2de' }}>
@@ -156,7 +155,7 @@ export function BlocksTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('languages') && resume.languages.length > 0 && (
+      {vis.has('languages') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Languages" />
           <div className="ml-5 overflow-hidden rounded-md border" style={{ borderColor: '#e3e2de' }}>
@@ -174,7 +173,7 @@ export function BlocksTemplate({ resume }: TemplateProps) {
         </div>
       )}
 
-      {vis.has('awards') && resume.awards.length > 0 && (
+      {vis.has('awards') && (
         <div className="mb-5" data-section>
           <SectionHeader title="Awards" />
           <div className="ml-5 space-y-3">
@@ -191,6 +190,7 @@ export function BlocksTemplate({ resume }: TemplateProps) {
           </div>
         </div>
       )}
+    </div>
     </div>
   )
 }

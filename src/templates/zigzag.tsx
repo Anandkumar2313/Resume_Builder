@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const PRIMARY = '#1e293b'
@@ -20,7 +19,7 @@ export function ZigzagTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] overflow-hidden bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="mx-auto w-full flex-1 overflow-hidden bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
       <div className="relative overflow-hidden" style={{ backgroundColor: PRIMARY }}>
         <div className="absolute inset-0">
           {[0, 1, 2, 3, 4].map(i => (
@@ -28,9 +27,8 @@ export function ZigzagTemplate({ resume }: TemplateProps) {
           ))}
         </div>
         <div className="relative flex items-center gap-5 px-8 py-7 text-white">
-          {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={72} className="shrink-0" wrapperStyle={{ border: `3px solid ${ACCENT}` }} />}
           <div>
-            <h1 className="text-2xl font-extrabold tracking-tight">{pi.fullName || 'Your Name'}</h1>
+            <h1 className="text-2xl font-extrabold tracking-tight">{pi.fullName}</h1>
             {pi.title && <p className="mt-0.5 text-sm font-medium" style={{ color: ACCENT }}>{pi.title}</p>}
             <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-white/60">
               {[pi.age, pi.gender, pi.hometown, pi.maritalStatus, pi.yearsOfExperience, pi.educationLevel, pi.email, pi.phone, pi.wechat, pi.location, pi.website, pi.linkedin].filter(Boolean).map((c, i) => <span key={i}>{c}</span>)}
@@ -39,10 +37,10 @@ export function ZigzagTemplate({ resume }: TemplateProps) {
         </div>
       </div>
       <div className="px-8 pb-8 pt-4">
-        {vis.has('summary') && pi.summary && (
+        {vis.has('summary') && (
           <div className="mb-6" data-section><SH title="Summary" alt={false} /><p className="mt-2 text-sm leading-relaxed text-zinc-600" dangerouslySetInnerHTML={{ __html: md(pi.summary) }} /></div>
         )}
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6" data-section>
             <SH title="Experience" alt={true} />
             <div className="mt-2 space-y-4">
@@ -59,7 +57,7 @@ export function ZigzagTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6" data-section>
             <SH title="Education" alt={false} />
             <div className="mt-2 space-y-3">
@@ -76,7 +74,7 @@ export function ZigzagTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6" data-section>
             <SH title="Skills" alt={true} />
             <div className="mt-2 space-y-2">
@@ -91,7 +89,7 @@ export function ZigzagTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('projects') && resume.projects.length > 0 && (
+        {vis.has('projects') && (
           <div className="mb-6" data-section>
             <SH title="Projects" alt={false} />
             <div className="mt-2 space-y-3">
@@ -108,7 +106,7 @@ export function ZigzagTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6" data-section>
             <SH title="Certifications" alt={true} />
             <div className="mt-2 space-y-1.5">
@@ -121,7 +119,7 @@ export function ZigzagTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6" data-section>
             <SH title="Languages" alt={false} />
             <div className="mt-2 flex flex-wrap gap-x-6 gap-y-1">
@@ -129,7 +127,7 @@ export function ZigzagTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6" data-section>
             <SH title="Awards" alt={true} />
             <div className="mt-2 space-y-2">

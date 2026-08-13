@@ -14,11 +14,7 @@ const PAGE_BREAK_AVOID_SELECTORS = [
   'h3',
 ]
 
-// Horizontal padding baked into the cloned element on each side.
-// PDF margins stay at 0 (to prevent html2pdf from clipping content),
-// and whitespace is created inside the rendered area instead.
-// At A4 width (794px = 210mm): 20px ≈ 5.3mm per side.
-const PDF_HORIZONTAL_PADDING_PX = 20
+const PDF_HORIZONTAL_PADDING_PX = 0
 
 let libLoadPromise: Promise<void> | null = null
 
@@ -131,9 +127,9 @@ export async function exportToPdf(
 
   // CRITICAL: html2canvas cannot resolve CSS stylesheets for detached nodes.
   // Attach the clone off-screen so all computed styles are available.
-  element.style.position = 'fixed'
-  element.style.top = '-99999px'
-  element.style.left = '-99999px'
+  element.style.position = 'absolute'
+  element.style.top = '0px'
+  element.style.left = '0px'
   element.style.zIndex = '-9999'
   document.body.appendChild(element)
 
@@ -143,33 +139,32 @@ export async function exportToPdf(
     requestAnimationFrame(() => { requestAnimationFrame(() => { resolve() }) })
   })
 
-  const exportPromise = new Promise<void>((resolve, reject) => {
-    void (html2pdf as (el: HTMLElement, opts: unknown) => { save: () => Promise<void> })(
-      element,
-      options,
-    )
-      .save()
-      .then(resolve)
-      .catch(() => {
-        reject(new ExportError('UNKNOWN', 'PDF generation failed. Please try again.'))
-      })
-  })
-
-  const timeoutPromise = new Promise<never>((_, reject) => {
-    setTimeout(() => {
-      reject(
-        new ExportError(
-          'TIMEOUT',
-          'PDF export timed out. Try with a shorter resume or check your browser settings.',
-        ),
-      )
-    }, EXPORT_TIMEOUT_MS)
-  })
+  let exportTimedOut = false
+  const timeoutId = setTimeout(() => {
+    exportTimedOut = true
+    if (element.parentNode) element.parentNode.removeChild(element)
+  }, EXPORT_TIMEOUT_MS)
 
   try {
-    await Promise.race([exportPromise, timeoutPromise])
+    type Html2PdfBuilder = {
+      set: (opts: unknown) => Html2PdfBuilder
+      from: (el: HTMLElement) => Html2PdfBuilder
+      save: () => Promise<void>
+    }
+    const worker = (html2pdf as () => Html2PdfBuilder)()
+    await worker.set(options).from(element).save()
+
+    if (exportTimedOut) {
+      throw new ExportError(
+        'TIMEOUT',
+        'PDF export timed out. Try with a shorter resume or check your browser settings.',
+      )
+    }
+  } catch (err) {
+    if (err instanceof ExportError) throw err
+    throw new ExportError('UNKNOWN', 'PDF generation failed. Please try again.')
   } finally {
-    // Always remove the off-screen clone from DOM to prevent memory leaks
+    clearTimeout(timeoutId)
     if (element.parentNode) {
       element.parentNode.removeChild(element)
     }

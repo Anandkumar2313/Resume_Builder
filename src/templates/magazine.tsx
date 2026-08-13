@@ -1,5 +1,4 @@
 import type { TemplateProps } from './types'
-import { AvatarImage } from './AvatarImage'
 import { md } from './render-utils'
 
 const PRIMARY = '#1a1a1a'
@@ -17,13 +16,12 @@ export function MagazineTemplate({ resume }: TemplateProps) {
   )
 
   return (
-    <div className="mx-auto max-w-[210mm] bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="mx-auto w-full flex-1 bg-white shadow-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
       <div className="px-8 py-7">
         <div className="mb-4 h-2 w-full" style={{ background: `linear-gradient(90deg, ${ACCENT}, ${PRIMARY})` }} />
         <div className="flex items-end gap-5">
-          {pi.avatar && <AvatarImage src={pi.avatar} avatarStyle="circle" size={80} className="shrink-0" />}
           <div className="flex-1">
-            <h1 className="text-4xl font-black uppercase tracking-tight leading-none" style={{ color: PRIMARY }}>{pi.fullName || 'Your Name'}</h1>
+            <h1 className="text-4xl font-black uppercase tracking-tight leading-none" style={{ color: PRIMARY }}>{pi.fullName}</h1>
             {pi.title && <p className="mt-1 text-base font-medium uppercase tracking-widest" style={{ color: ACCENT }}>{pi.title}</p>}
           </div>
         </div>
@@ -32,10 +30,10 @@ export function MagazineTemplate({ resume }: TemplateProps) {
         </div>
       </div>
       <div className="px-8 pb-8">
-        {vis.has('summary') && pi.summary && (
+        {vis.has('summary') && (
           <div className="mb-6" data-section><SH title="Profile" /><p className="text-sm leading-relaxed" style={{ color: SECONDARY }} dangerouslySetInnerHTML={{ __html: md(pi.summary) }} /></div>
         )}
-        {vis.has('experience') && resume.experience.length > 0 && (
+        {vis.has('experience') && (
           <div className="mb-6" data-section>
             <SH title="Experience" />
             <div className="space-y-4">
@@ -53,7 +51,7 @@ export function MagazineTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('education') && resume.education.length > 0 && (
+        {vis.has('education') && (
           <div className="mb-6" data-section>
             <SH title="Education" />
             <div className="space-y-3">
@@ -70,7 +68,7 @@ export function MagazineTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('skills') && resume.skills.length > 0 && (
+        {vis.has('skills') && (
           <div className="mb-6" data-section>
             <SH title="Skills" />
             <div className="space-y-1.5">
@@ -83,7 +81,7 @@ export function MagazineTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('projects') && resume.projects.length > 0 && (
+        {vis.has('projects') && (
           <div className="mb-6" data-section>
             <SH title="Projects" />
             <div className="space-y-3">
@@ -100,7 +98,7 @@ export function MagazineTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('certifications') && resume.certifications.length > 0 && (
+        {vis.has('certifications') && (
           <div className="mb-6" data-section>
             <SH title="Certifications" />
             <div className="space-y-1.5">
@@ -113,7 +111,7 @@ export function MagazineTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('languages') && resume.languages.length > 0 && (
+        {vis.has('languages') && (
           <div className="mb-6" data-section>
             <SH title="Languages" />
             <div className="flex flex-wrap gap-x-6 gap-y-1">
@@ -121,7 +119,7 @@ export function MagazineTemplate({ resume }: TemplateProps) {
             </div>
           </div>
         )}
-        {vis.has('awards') && resume.awards.length > 0 && (
+        {vis.has('awards') && (
           <div className="mb-6" data-section>
             <SH title="Awards" />
             <div className="space-y-2">

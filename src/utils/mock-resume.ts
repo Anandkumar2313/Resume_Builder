@@ -14,7 +14,6 @@ export const MOCK_RESUME: Resume = {
     website: 'janedoe.com',
     linkedin: '',
     github: '',
-    avatar: '',
     summary: 'Experienced software engineer with a passion for building scalable web applications and intuitive user interfaces.',
     wechat: '',
     age: '',
